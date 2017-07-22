@@ -195,7 +195,7 @@ transitions[State.HABITS] = [
 ]
 
 
-token = '448435891:AAFZ2qbixdFzb9IKi-8x7jTt-jHaV4GlArI'
+token = '394798553:AAG1Fv7iFuyOx3pQQP1AR3F-dQZ8XONbmto'
 
 TelegramBot = telepot.Bot(token)
 last_id = None
