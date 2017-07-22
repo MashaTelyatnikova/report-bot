@@ -1,0 +1,16 @@
+
+D:\Python\bot2\eat>__main__.py freeze  
+aiohttp==2.2.3
+async-timeout==1.2.1
+certifi==2017.4.17
+chardet==3.0.4
+future==0.16.0
+idna==2.5
+multidict==3.1.3
+python-telegram-bot==6.1.0
+queuelib==1.4.2
+requests==2.18.1
+telepot==12.1
+urllib3==1.21.1
+virtualenv==15.1.0
+yarl==0.12.0
