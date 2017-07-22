@@ -1,3 +1,4 @@
+from telepot.loop import OrderedWebhook
 import telepot
 from time import sleep
 import json
@@ -216,6 +217,5 @@ def handle(msg):
 				break
 	
 TelegramBot.message_loop(handle)
-
-while True:
-	sleep (1)
+webhook = OrderedWebhook(TelegramBot, handle)
+webhook.run_as_thread()
