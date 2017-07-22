@@ -217,5 +217,6 @@ def handle(msg):
 				break
 	
 TelegramBot.message_loop(handle)
-webhook = OrderedWebhook(TelegramBot, handle)
-webhook.run_as_thread()
+
+while True:
+	sleep (1)
