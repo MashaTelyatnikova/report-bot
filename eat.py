@@ -121,8 +121,7 @@ class Application:
 	state = State.INIT
 	
 def handle_start(text, report, chat_id):
-	report.start = datetime.now()
-	#todo help
+	TelegramBot.sendMessage(chat_id = chat_id, text = "ХЭЛП")
 
 def handle_eat(text, report, chat_id):
 	report.food.append(FoodItem())
@@ -130,6 +129,9 @@ def handle_eat(text, report, chat_id):
 
 def handle_food_item(text, report, chat_id):
 	report.food[-1].info = text
+	
+def handle_sleep(text, report, chat_id):
+	report.start = datetime.now()
 	
 def handle_stop(text, report, chat_id):
 	report.end = datetime.now()
@@ -166,6 +168,7 @@ transitions[State.START] = [
 	(IsCommandRule("health"), CommandInfo(State.HEALTH, lambda text, report, chat_id: TelegramBot.sendMessage(chat_id = chat_id, text = "Введите своё самочувствие от 1 до 10"))),
 	(IsCommandRule("hab"), CommandInfo(State.HABITS, lambda text, report, chat_id: TelegramBot.sendMessage(chat_id = chat_id, text = "Введите выполненные привычки"))),
 	(IsCommandRule("ex"), CommandInfo(State.START, lambda text, report, chat_id: handle_exercise(text, report, chat_id))),
+	(IsCommandRule("sleep"), CommandInfo(State.START, lambda text, report, chat_id: handle_sleep(text, report, chat_id))),
 	(IsCommandRule("notex"), CommandInfo(State.START, lambda text, report, chat_id: handle_notexercise(text, report, chat_id))),
 	(IsCommandRule("stop"), CommandInfo(State.INIT, lambda text, report, chat_id: handle_stop(text, report, chat_id))), 
 	(IsAlwaysTrueRule(), CommandInfo(State.START, lambda text, report, chat_id: TelegramBot.sendMessage(chat_id = chat_id, text = "Неверная команда")))
@@ -195,7 +198,7 @@ transitions[State.HABITS] = [
 ]
 
 
-token = '448435891:AAFZ2qbixdFzb9IKi-8x7jTt-jHaV4GlArI'
+token = '394798553:AAG1Fv7iFuyOx3pQQP1AR3F-dQZ8XONbmto'
 
 TelegramBot = telepot.Bot(token)
 last_id = None
@@ -216,6 +219,8 @@ def handle(msg):
 				rule[1].command(data, current_report, chat_id)
 				break
 	
+
+
 TelegramBot.message_loop(handle)
 
 while True:
